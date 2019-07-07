@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Nprogress from 'nprogress'
 import notify from './notify'
+import resetApp from './resetApp'
 import 'nprogress/nprogress.css'
 
 /**
@@ -26,13 +27,16 @@ export default function ajax (req) {
     /** {object} err - https://github.com/axios/axios#handling-errors */
     .catch(err => {
       if (err.response) {
-        const resData = err.response.data
-        /* resData { status_code<number>, status_message<string>, success<boolean> } */
+        const res = err.response
+        const resData = res.data
         notify(
           typeof resData === 'string'
             ? resData
             : `[${resData.status_code}] ${resData.status_message}`
         )
+        if (res.status === 401) {
+          resetApp() // session denied, etc
+        }
       } else {
         notify(err.message)
       }

@@ -1,3 +1,4 @@
+// Doc: https://developers.themoviedb.org/3/configuration/get-api-configuration
 import ajax from '~/utils/ajax'
 
 export default {
@@ -28,7 +29,6 @@ export default {
   },
   effects: {
     async syncConf () {
-      // https://developers.themoviedb.org/3/configuration/get-api-configuration
       const conf = await ajax({ url: '/configuration' })
       this.updateConf(conf)
     }
