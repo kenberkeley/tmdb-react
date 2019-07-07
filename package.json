@@ -10,13 +10,18 @@
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
+    "link-module-alias": "^1.2.0",
     "react-scripts": "3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "link-module-alias"
+  },
+  "_moduleAliases": {
+    "~": "./src"
   },
   "eslintConfig": {
     "extends": "react-app"
