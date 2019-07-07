@@ -6,3 +6,4 @@ const store = init({
 })
 
 export default store
+export const { dispatch } = store

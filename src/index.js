@@ -2,15 +2,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 
-import store from './store/'
+import { dispatch } from './store/'
 
 (async () => {
   try {
-    await store.dispatch.auth.ensureAuthed()
+    await dispatch.auth.ensureAuthed()
   } catch (e) {
-    store.dispatch.auth.authNow()
+    dispatch.auth.authNow()
     return
   }
-  await store.dispatch.apiConf.syncConf()
+  await Promise.all([
+    dispatch.account.syncInfo(),
+    dispatch.apiConf.syncConf()
+  ])
+  await dispatch.watchlist.syncWatchlist()
   ReactDOM.render(<App />, document.getElementById('root'))
 })()
