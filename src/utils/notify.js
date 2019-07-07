@@ -3,6 +3,6 @@
  * @param {string} msg
  */
 export default function (msg) {
-  console.info('[Notify]', msg)
+  console.warn('[Notify]', msg)
   window.alert(msg)
 }
