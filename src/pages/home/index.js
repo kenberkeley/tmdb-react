@@ -1,9 +1,19 @@
 import React from 'react'
+import { searchTvShows } from './api/'
+import SearchInput from './comps/SearchInput'
 
-const Home = () => (
-  <h1>
-    Home
-  </h1>
-)
+export default class Home extends React.Component {
+  onSearch = query => {
+    searchTvShows(query).then(data => {
+      console.log(data) // TODO: show in list
+    })
+  }
 
-export default Home
+  render () {
+    return (
+      <section>
+        <SearchInput onSearch={this.onSearch} />
+      </section>
+    )
+  }
+}
