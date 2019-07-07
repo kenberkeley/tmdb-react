@@ -2,23 +2,21 @@
 import ajax from '~/utils/ajax'
 
 export default {
-  state: {
-    watchlist: [/* {
-      poster_path
-      popularity
-      id
-      backdrop_path
-      vote_average
-      overview
-      first_air_date
-      origin_country
-      genre_ids
-      original_language
-      vote_count
-      name
-      original_name
-    } */]
-  },
+  state: [/* {
+    poster_path
+    popularity
+    id
+    backdrop_path
+    vote_average
+    overview
+    first_air_date
+    origin_country
+    genre_ids
+    original_language
+    vote_count
+    name
+    original_name
+  } */],
   reducers: {
     updateWatchlist (state, nextState) {
       return nextState
@@ -40,6 +38,22 @@ export default {
         curPage += 1
       }
       this.updateWatchlist(watchlist)
+    },
+    async add () {
+      // TODO
+    },
+    async rm (id, rootState) {
+      if (!window.confirm('Are you sure to remove it from the watchlist?')) return
+
+      const accountId = rootState.account.id
+      await ajax({
+        method: 'delete',
+        url: `/account/${accountId}/watchlist/tv`,
+        params: { id }
+      }) // TODO: remove from watchlist in API v3 is not available?
+      this.updateWatchlist(
+        rootState.watchlist.filter(item => item.id !== id)
+      )
     }
   }
 }

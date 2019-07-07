@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import getLangByCode from '~/utils/getLangByCode'
+import getYearFromDate from '~/utils/getYearFromDate'
 import getPosterUrl from './utils/getPosterUrl'
 import styles from './index.module.css'
 
@@ -10,7 +11,7 @@ const columns = [
     <img className={styles.poster} alt={item.name} src={getPosterUrl(url)} />
   )],
   ['Title', 'name'],
-  ['Year', 'first_air_date', date => date ? date.substr(0, 4) : '-'],
+  ['Year', 'first_air_date', getYearFromDate],
   ['Rate', 'vote_average', val => val + '%'],
   ['Lang', 'original_language', getLangByCode]
 ]
