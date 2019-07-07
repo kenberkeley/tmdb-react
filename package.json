@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@rematch/core": "^1.1.0",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.1"
+    "react-router-dom": "^5.0.1",
+    "url-join": "^4.0.1"
   },
   "devDependencies": {
     "link-module-alias": "^1.2.0",
