@@ -4,6 +4,8 @@ import notify from './notify'
 import resetApp from './resetApp'
 import 'nprogress/nprogress.css'
 
+import store from '~/store/'
+
 /**
  * @param  {object} req - https://github.com/axios/axios#request-config
  * @return {Promise<any>}
@@ -16,6 +18,8 @@ export default function ajax (req) {
     [process.env.REACT_APP_API_KEY_FIELD]: process.env.REACT_APP_API_KEY_VALUE,
     ...req.params
   }
+  const { sessionId } = store.getState().auth
+  if (sessionId) req.params.session_id = sessionId
 
   Nprogress.start()
   return axios(req)
