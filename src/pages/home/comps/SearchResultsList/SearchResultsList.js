@@ -1,15 +1,15 @@
 import React from 'react'
 import { func } from 'prop-types'
 import { WatchListType } from '~/types/watchlist'
-import getLangByCode from '~/utils/getLangByCode'
 import getYearFromDate from '~/utils/getYearFromDate'
-import getPosterUrl from './utils/getPosterUrl'
+import getLangByCode from '~/utils/getLangByCode'
+import getImgUrl from '~/utils/getImgUrl'
 import styles from './SearchResultsList.module.css'
 
 const columns = [
   /* [label<string>, field<string>, formatter(val, row)<function?>] */
   ['Cover', 'poster_path', (url, item) => (
-    <img className={styles.poster} alt={item.name} src={getPosterUrl(url)} />
+    <img className={styles.poster} alt={item.name} src={getImgUrl(url, 'poster')} />
   )],
   ['Title', 'name'],
   ['Year', 'first_air_date', getYearFromDate],
