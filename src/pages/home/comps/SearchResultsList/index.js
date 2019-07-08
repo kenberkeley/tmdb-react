@@ -2,7 +2,8 @@ import { connect } from 'react-redux'
 import SearchResultsList from './SearchResultsList'
 
 const mapStateToProps = rootState => ({
-  watchlist: rootState.watchlist
+  watchlist: rootState.watchlist,
+  results: rootState.search.results
 })
 
 const mapDispatchToProps = dispatch => ({

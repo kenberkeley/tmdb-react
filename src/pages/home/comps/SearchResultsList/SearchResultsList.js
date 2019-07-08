@@ -19,14 +19,14 @@ const columns = [
 
 export default class SearchResultsList extends React.Component {
   static propTypes = {
-    data: WatchListType,
+    results: WatchListType,
     watchlist: WatchListType,
     addToWatchList: func.isRequired,
     rmFromWatchList: func.isRequired
   }
 
   render () {
-    const { data, watchlist, addToWatchList, rmFromWatchList } = this.props
+    const { results, watchlist, addToWatchList, rmFromWatchList } = this.props
     const isWatched = id => !!watchlist.find(item => item.id === id)
     return (
       <table className='table is-fullwidth'>
@@ -42,7 +42,7 @@ export default class SearchResultsList extends React.Component {
         </thead>
         <tbody>
           {
-            data.map(item => (
+            results.map(item => (
               <tr key={item.id}>
                 {
                   columns.map(([label, field, formatter]) => (

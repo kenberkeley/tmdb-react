@@ -2,21 +2,7 @@
 import ajax from '~/utils/ajax'
 
 export default {
-  state: [/* {
-    poster_path
-    popularity
-    id
-    backdrop_path
-    vote_average
-    overview
-    first_air_date
-    origin_country
-    genre_ids
-    original_language
-    vote_count
-    name
-    original_name
-  } */],
+  state: [], /* <~/types/watchlist/WatchListType> */
   reducers: {
     updateWatchlist (state, nextState) {
       return nextState
