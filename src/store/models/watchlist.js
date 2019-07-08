@@ -24,13 +24,12 @@ export default {
   },
   effects: {
     async syncWatchlist (payload, rootState) {
-      const accountId = rootState.account.id
       const watchlist = []
       let curPage = 1
       let totalPage = 1
       while (curPage <= totalPage) { // TODO: using Promise.all concurrency
         const { results, total_pages: total } = await ajax({
-          url: `/account/${accountId}/watchlist/tv`,
+          url: `/account/${rootState.account.id}/watchlist/tv`,
           params: { page: curPage }
         })
         watchlist.push(...results)
@@ -45,12 +44,15 @@ export default {
     async rm (id, rootState) {
       if (!window.confirm('Are you sure to remove it from the watchlist?')) return
 
-      const accountId = rootState.account.id
       await ajax({
-        method: 'delete',
-        url: `/account/${accountId}/watchlist/tv`,
-        params: { id }
-      }) // TODO: remove from watchlist in API v3 is not available?
+        method: 'post',
+        url: `/account/${rootState.account.id}/watchlist`,
+        data: {
+          media_type: 'tv',
+          media_id: id,
+          watchlist: false
+        }
+      })
       this.updateWatchlist(
         rootState.watchlist.filter(item => item.id !== id)
       )
