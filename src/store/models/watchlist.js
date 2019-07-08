@@ -38,24 +38,28 @@ export default {
       }
       this.updateWatchlist(watchlist)
     },
-    async add () {
-      // TODO
+    async add (item, rootState) {
+      await this._upd({ id: item.id, isWatched: true })
+      this.updateWatchlist(
+        [...rootState.watchlist, item]
+      )
     },
     async rm (id, rootState) {
-      if (!window.confirm('Are you sure to remove it from the watchlist?')) return
-
-      await ajax({
+      await this._upd({ id, isWatched: false })
+      this.updateWatchlist(
+        rootState.watchlist.filter(item => item.id !== id)
+      )
+    },
+    _upd ({ id, isWatched }, rootState) {
+      return ajax({
         method: 'post',
         url: `/account/${rootState.account.id}/watchlist`,
         data: {
           media_type: 'tv',
           media_id: id,
-          watchlist: false
+          watchlist: isWatched
         }
       })
-      this.updateWatchlist(
-        rootState.watchlist.filter(item => item.id !== id)
-      )
     }
   }
 }

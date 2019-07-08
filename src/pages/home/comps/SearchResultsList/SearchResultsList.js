@@ -1,4 +1,5 @@
 import React from 'react'
+import { func } from 'prop-types'
 import { WatchListType } from '~/types/watchlist'
 import getLangByCode from '~/utils/getLangByCode'
 import getYearFromDate from '~/utils/getYearFromDate'
@@ -18,11 +19,15 @@ const columns = [
 
 export default class SearchResultsList extends React.Component {
   static propTypes = {
-    data: WatchListType
+    data: WatchListType,
+    watchlist: WatchListType,
+    addToWatchList: func.isRequired,
+    rmFromWatchList: func.isRequired
   }
 
   render () {
-    const { data } = this.props
+    const { data, watchlist, addToWatchList, rmFromWatchList } = this.props
+    const isWatched = id => !!watchlist.find(item => item.id === id)
     return (
       <table className='table is-fullwidth'>
         <thead>
@@ -51,7 +56,19 @@ export default class SearchResultsList extends React.Component {
                   ))
                 }
                 <td>
-                  +/-
+                  {
+                    isWatched(item.id)
+                      ? <button className='button' onClick={() => rmFromWatchList(item.id)}>
+                          <span className='icon is-small'>
+                            <i className='fas fa-trash'></i>
+                          </span>
+                        </button>
+                      : <button className='button' onClick={() => addToWatchList(item)}>
+                          <span className='icon is-small'>
+                            <i className='fas fa-plus'></i>
+                          </span>
+                        </button>
+                  }
                 </td>
               </tr>
             ))
