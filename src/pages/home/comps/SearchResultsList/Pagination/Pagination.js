@@ -15,7 +15,7 @@ export default class Pagination extends React.Component {
     return (
       <nav className='pagination is-centered' role='navigation' aria-label='pagination'>
         <button className='pagination-previous' onClick={goPrevPage}
-          disabled={isLoading || curPage === 1}>
+          disabled={isLoading || +curPage <= 1}>
           Previous
         </button>
         <span className='pagination-list'>

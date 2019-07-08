@@ -28,9 +28,57 @@ export default class ResultsList extends React.Component {
     rmFromWatchList: func.isRequired
   }
 
-  render () {
+  renderNoResultsRow () {
+    return (
+      <tr>
+        <td
+          colSpan={columns.length + 1}
+          className='has-text-centered has-text-grey'>
+          (No results)
+        </td>
+      </tr>
+    )
+  }
+
+  renderResultRows () {
     const { results, watchlist, addToWatchList, rmFromWatchList } = this.props
     const isWatched = id => !!watchlist.find(item => item.id === id)
+    return results.map(item => (
+      <tr key={item.id}>
+        {
+          columns.map(([label, field, formatter]) => (
+            <td key={field}>
+              {
+                formatter
+                  ? formatter(item[field], item)
+                  : item[field]
+              }
+            </td>
+          ))
+        }
+        <td>
+          {
+            isWatched(item.id)
+              ? <button className='button' onClick={() => rmFromWatchList(item.id)}
+                  aria-label='remove from watchlist'>
+                  <span className='icon is-small'>
+                    <i className='fas fa-trash'></i>
+                  </span>
+                </button>
+              : <button className='button' onClick={() => addToWatchList(item)}
+                  aria-label='add to watchlist'>
+                  <span className='icon is-small'>
+                    <i className='fas fa-plus'></i>
+                  </span>
+                </button>
+          }
+        </td>
+      </tr>
+    ))
+  }
+
+  render () {
+    const { results } = this.props
     return (
       <table className='table is-fullwidth'>
         <thead>
@@ -45,38 +93,9 @@ export default class ResultsList extends React.Component {
         </thead>
         <tbody>
           {
-            results.map(item => (
-              <tr key={item.id}>
-                {
-                  columns.map(([label, field, formatter]) => (
-                    <td key={field}>
-                      {
-                        formatter
-                          ? formatter(item[field], item)
-                          : item[field]
-                      }
-                    </td>
-                  ))
-                }
-                <td>
-                  {
-                    isWatched(item.id)
-                      ? <button className='button' onClick={() => rmFromWatchList(item.id)}
-                          aria-label='remove from watchlist'>
-                          <span className='icon is-small'>
-                            <i className='fas fa-trash'></i>
-                          </span>
-                        </button>
-                      : <button className='button' onClick={() => addToWatchList(item)}
-                          aria-label='add to watchlist'>
-                          <span className='icon is-small'>
-                            <i className='fas fa-plus'></i>
-                          </span>
-                        </button>
-                  }
-                </td>
-              </tr>
-            ))
+            results.length
+              ? this.renderResultRows()
+              : this.renderNoResultsRow()
           }
         </tbody>
       </table>
