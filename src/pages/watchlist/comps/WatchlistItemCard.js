@@ -1,15 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { WatchListItemType } from '~/types/watchlist'
 import getYearFromDate from '~/utils/getYearFromDate'
 
 export default class WatchlistItemCard extends React.Component {
   static propTypes = {
-    item: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      first_air_date: PropTypes.string.isRequired,
-      overview: PropTypes.string.isRequired
-    }),
+    item: WatchListItemType,
     onRemove: PropTypes.func.isRequired
   }
 

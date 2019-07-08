@@ -1,11 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { WatchListType } from '~/types/watchlist'
 import WatchListItemCard from './comps/WatchlistItemCard'
 
 class Watchlist extends React.Component {
   static propTypes = {
-    watchlist: PropTypes.arrayOf(WatchListItemCard.propTypes.item)
+    watchlist: WatchListType
   }
 
   render () {

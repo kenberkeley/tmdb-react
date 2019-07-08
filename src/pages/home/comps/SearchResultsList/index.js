@@ -1,70 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import getLangByCode from '~/utils/getLangByCode'
-import getYearFromDate from '~/utils/getYearFromDate'
-import getPosterUrl from './utils/getPosterUrl'
-import styles from './index.module.css'
+import { connect } from 'react-redux'
+import SearchResultsList from './SearchResultsList'
 
-const columns = [
-  /* [label<string>, field<string>, formatter(val, row)<function?>] */
-  ['Cover', 'poster_path', (url, item) => (
-    <img className={styles.poster} alt={item.name} src={getPosterUrl(url)} />
-  )],
-  ['Title', 'name'],
-  ['Year', 'first_air_date', getYearFromDate],
-  ['Rate', 'vote_average', val => val + '%'],
-  ['Lang', 'original_language', getLangByCode]
-]
+const mapStateToProps = rootState => ({
+  watchlist: rootState.watchlist
+})
 
-export default class SearchResultsList extends React.Component {
-  static propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
-      poster_path: PropTypes.string, // could be null
-      name: PropTypes.string.isRequired,
-      first_air_date: PropTypes.string.isRequired, // 'YYYY-MM-DD', could be ''
-      vote_average: PropTypes.number.isRequired,
-      original_language: PropTypes.string.isRequired,
-      id: PropTypes.number.isRequired
-    }))
-  }
+const mapDispatchToProps = dispatch => ({
+  addToWatchList: item => dispatch.watchlist.add(item),
+  rmFromWatchList: id => dispatch.watchlist.rm(id)
+})
 
-  render () {
-    const { data } = this.props
-    return (
-      <table className='table is-fullwidth'>
-        <thead>
-          <tr>
-            {
-              columns.map(([label, field]) => (
-                <td key={field}>{ label }</td>
-              ))
-            }
-            <td>Add / Remove Watchlist</td>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            data.map(item => (
-              <tr key={item.id}>
-                {
-                  columns.map(([label, field, formatter]) => (
-                    <td key={field}>
-                      {
-                        formatter
-                          ? formatter(item[field], item)
-                          : item[field]
-                      }
-                    </td>
-                  ))
-                }
-                <td>
-                  +/-
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-    )
-  }
-}
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsList)
