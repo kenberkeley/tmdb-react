@@ -23,7 +23,8 @@ export default class WatchlistItemCard extends React.Component {
           <p className='card-header-title'>
             { item.name } ({ getYearFromDate(item.first_air_date) })
           </p>
-          <a className='card-header-icon' aria-label='remove from watchlist'
+          <a aria-label='remove from watchlist'
+            className='card-header-icon'
             onClick={this.handleRemove}>
             <span className='icon'>
               <i className='fas fa-trash'></i>

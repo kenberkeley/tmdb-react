@@ -59,14 +59,16 @@ export default class ResultsList extends React.Component {
         <td>
           {
             isWatched(item.id)
-              ? <button className='button' onClick={() => rmFromWatchList(item.id)}
-                  aria-label='remove from watchlist'>
+              ? <button aria-label='remove from watchlist'
+                  className='button is-danger is-outlined'
+                  onClick={() => rmFromWatchList(item.id)}>
                   <span className='icon is-small'>
                     <i className='fas fa-trash'></i>
                   </span>
                 </button>
-              : <button className='button' onClick={() => addToWatchList(item)}
-                  aria-label='add to watchlist'>
+              : <button aria-label='add to watchlist'
+                  className='button is-link is-outlined'
+                  onClick={() => addToWatchList(item)}>
                   <span className='icon is-small'>
                     <i className='fas fa-plus'></i>
                   </span>
