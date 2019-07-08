@@ -16,7 +16,8 @@ import store, { dispatch } from './store/'
     dispatch.account.syncInfo(),
     dispatch.apiConf.syncConf()
   ])
-  dispatch.watchlist.syncWatchlist() // no `await`, it's unnecessary to wait
+  dispatch.watchlist.syncWatchlist()
+
   ReactDOM.render(
     <Provider store={store}>
       <App />

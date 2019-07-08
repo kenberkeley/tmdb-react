@@ -7,8 +7,7 @@ import getImgUrl from '~/utils/getImgUrl'
 
 const columns = [
   /* [label<string>, field<string>, formatter(val, row)<function?>] */
-  ['Cover', 'poster_path', (url, item) => (
-    // TODO: image lazyload
+  ['Cover', 'poster_path', (url, item) => ( // TODO: image lazyload
     <img
       style={{ width: '100px', height: '100px' }}
       alt={item.name}
