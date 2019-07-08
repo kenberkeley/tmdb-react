@@ -1,3 +1,4 @@
+/* eslint-disable  jsx-a11y/anchor-is-valid */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { WatchListItemType } from '~/types/watchlist'
@@ -23,7 +24,7 @@ export default class WatchlistItemCard extends React.Component {
             { item.name } ({ getYearFromDate(item.first_air_date) })
           </p>
           <a className='card-header-icon' aria-label='remove from watchlist'
-            onClick={this.handleRemove} href='.'>
+            onClick={this.handleRemove}>
             <span className='icon'>
               <i className='fas fa-trash'></i>
             </span>
