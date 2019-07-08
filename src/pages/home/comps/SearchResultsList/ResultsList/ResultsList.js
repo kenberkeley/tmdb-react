@@ -4,12 +4,15 @@ import { WatchListType } from '~/types/watchlist'
 import getYearFromDate from '~/utils/getYearFromDate'
 import getLangByCode from '~/utils/getLangByCode'
 import getImgUrl from '~/utils/getImgUrl'
-import styles from './SearchResultsList.module.css'
 
 const columns = [
   /* [label<string>, field<string>, formatter(val, row)<function?>] */
   ['Cover', 'poster_path', (url, item) => (
-    <img className={styles.poster} alt={item.name} src={getImgUrl(url, 'poster')} />
+    <img
+      style={{ width: '100px', height: '100px' }}
+      alt={item.name}
+      src={getImgUrl(url, 'poster')}
+    />
   )],
   ['Title', 'name'],
   ['Year', 'first_air_date', getYearFromDate],
@@ -17,7 +20,7 @@ const columns = [
   ['Lang', 'original_language', getLangByCode]
 ]
 
-export default class SearchResultsList extends React.Component {
+export default class ResultsList extends React.Component {
   static propTypes = {
     results: WatchListType,
     watchlist: WatchListType,

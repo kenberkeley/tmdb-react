@@ -1,14 +1,12 @@
-import { connect } from 'react-redux'
-import SearchResultsList from './SearchResultsList'
+import React from 'react'
+import ResultsList from './ResultsList/'
+import Pagination from './Pagination/'
 
-const mapStateToProps = rootState => ({
-  watchlist: rootState.watchlist,
-  results: rootState.search.results
-})
+const SearchResultsList = () => (
+  <section>
+    <ResultsList />
+    <Pagination />
+  </section>
+)
 
-const mapDispatchToProps = dispatch => ({
-  addToWatchList: item => dispatch.watchlist.add(item),
-  rmFromWatchList: id => dispatch.watchlist.rm(id)
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsList)
+export default SearchResultsList

@@ -6,20 +6,31 @@ export default {
     query: '',
     curPage: null,
     totalPage: null,
+    isLoading: false,
     results: [] /* <~/types/watchlist/WatchListType> */
   },
   reducers: {
-    updateState (state, nextState) {
-      return nextState
+    setState (state, nextState) {
+      return {
+        ...state,
+        ...nextState
+      }
     }
   },
   effects: {
-    async search (query) {
+    async search ({ query, page = 1 }) {
+      this.setState({ isLoading: true })
       const { page: curPage, results, total_pages: totalPage } = await ajax({
         url: '/search/tv',
-        params: { query }
+        params: { query, page }
       })
-      this.updateState({ query, curPage, totalPage, results })
+      this.setState({ query, curPage, totalPage, results, isLoading: false })
+    },
+    goPrevPage (payload, { search: { query, curPage } }) {
+      return this.search({ query, page: curPage - 1 })
+    },
+    goNextPage (payload, { search: { query, curPage } }) {
+      return this.search({ query, page: curPage + 1 })
     }
   }
 }

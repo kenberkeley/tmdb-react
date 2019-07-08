@@ -6,7 +6,7 @@ const mapStateToProps = rootState => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onSearch: query => dispatch.search.search(query)
+  onSearch: query => dispatch.search.search({ query })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchInput)
