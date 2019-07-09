@@ -18,7 +18,7 @@ export default class WatchlistItemCard extends React.Component {
   render () {
     const { item } = this.props
     return (
-      <div className='card'>
+      <div className='card' style={{ marginBottom: '1.5em' }}>
         <header className='card-header'>
           <p className='card-header-title'>
             { item.name } ({ getYearFromDate(item.first_air_date) })
@@ -32,9 +32,9 @@ export default class WatchlistItemCard extends React.Component {
           </a>
         </header>
         <div className='card-content'>
-          <div className='content'>
+          <p className='content'>
             { item.overview }
-          </div>
+          </p>
         </div>
       </div>
     )

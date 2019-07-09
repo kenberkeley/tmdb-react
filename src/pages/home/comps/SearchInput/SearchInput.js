@@ -29,7 +29,7 @@ export default class SearchInput extends React.Component {
     const { keywords } = this.state
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className='field has-addons'>
+        <div className='field has-addons' style={{ justifyContent: 'flex-end' }}>
           <div className='control has-icons-left'>
             <span className='icon is-small is-left'>
               <i className='fas fa-search'></i>

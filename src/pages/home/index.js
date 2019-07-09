@@ -5,6 +5,7 @@ import SearchResultsList from './comps/SearchResultsList/'
 const Home = () => (
   <section>
     <SearchInput />
+    <br />
     <SearchResultsList />
   </section>
 )
