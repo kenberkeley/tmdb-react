@@ -7,10 +7,10 @@ import routes from './pages/'
 
 const App = () => (
   <Router>
+    <Helmet titleTemplate='%s - My TV Shows'>
+      <meta name='description' content='A TMDb demo powered by React.js' />
+    </Helmet>
     <Layout>
-      <Helmet titleTemplate='%s - My TV Shows'>
-        <meta name='description' content='A TMDb demo powered by React.js' />
-      </Helmet>
       {
         routes.map(route => (
           <Route
