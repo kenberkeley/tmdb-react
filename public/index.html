@@ -33,6 +33,12 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <script>
+      if (typeof Symbol === 'undefined') { // loading polyfill only when needed (refer to https://bit.ly/2IPNCSZ)
+        document.write('<script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=es6,es7&flags=gated"><\/script>')
+      }
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
