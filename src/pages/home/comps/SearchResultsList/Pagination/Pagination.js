@@ -14,14 +14,14 @@ export default class Pagination extends React.Component {
     const { curPage, totalPage, isLoading, goPrevPage, goNextPage } = this.props
     return (
       <nav className='pagination is-centered' role='navigation' aria-label='pagination'>
-        <button className='pagination-previous' onClick={goPrevPage}
+        <button className='button pagination-previous' onClick={goPrevPage}
           disabled={isLoading || +curPage <= 1}>
           Previous
         </button>
         <span className='pagination-list'>
           { curPage } / { totalPage }
         </span>
-        <button className='pagination-next' onClick={goNextPage}
+        <button className='button pagination-next' onClick={goNextPage}
           disabled={isLoading || curPage === totalPage}>
           Next page
         </button>
