@@ -2,6 +2,7 @@
   "name": "themoviedb-demo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kenberkeley.github.io/themoviedb-demo",
   "dependencies": {
     "@rematch/core": "^1.1.0",
     "axios": "^0.19.0",
@@ -17,6 +18,7 @@
     "url-join": "^4.0.1"
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "link-module-alias": "^1.2.0",
     "react-scripts": "3.0.1"
   },
@@ -25,7 +27,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "link-module-alias"
+    "postinstall": "link-module-alias",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "_moduleAliases": {
     "~": "./src"
