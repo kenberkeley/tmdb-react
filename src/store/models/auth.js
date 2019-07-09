@@ -26,17 +26,20 @@ export default {
       if (queries.has(QUERY__OAUTH_REQUEST_TOKEN)) { // redirect from Doc: Step 2
         if (queries.get(QUERY__OAUTH_IS_APPROVED) === 'true') {
           return this._fetchNewSessionId(queries.get(QUERY__OAUTH_REQUEST_TOKEN))
-        } else {
-          const msg = 'You did not authorize the app to access your TMDb account'
-          notify(msg)
-          throw new Error(msg)
         }
+        const msg = 'You did not authorize the app to access your TMDb account'
+        notify(msg)
+        throw new Error(msg)
       }
       throw new Error('Please call authNow to continue')
     },
     authNow () {
       LS.rm(SESSION_ID) // force to renew session_id
-      return this._fetchNewReqToken()
+
+      if (window.confirm('You will be redirected to TMDb to approve the authorization')) {
+        return this._fetchNewReqToken()
+      }
+      notify('You cancelled the auth request, please refresh the page to retry')
     },
     async _fetchNewReqToken () { // Doc: Step 1
       const { request_token: reqToken } = await ajax({ url: '/authentication/token/new' })
