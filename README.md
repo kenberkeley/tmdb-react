@@ -17,6 +17,9 @@ Click [here](https://kenberkeley.github.io/themoviedb-demo).
 ## $ Quick Start
 
 ```sh
+$ git clone https://github.com/kenberkeley/themoviedb-demo.git
+$ cd themoviedb-demo/
+
 # Install dependencies
 $ npm i
 
