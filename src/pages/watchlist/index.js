@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
 import { WatchListType } from '~/types/watchlist'
 import WatchListItemCard from './comps/WatchlistItemCard'
@@ -12,6 +13,9 @@ class Watchlist extends React.Component {
     const { watchlist, rmFromWatchList } = this.props
     return (
       <section>
+        <Helmet>
+          <title>Watchlist</title>
+        </Helmet>
         {
           watchlist.map(item => (
             <WatchListItemCard
