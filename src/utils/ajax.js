@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Nprogress from 'nprogress'
 import notify from './notify'
-import resetApp from './resetApp'
+import reloadApp from './reloadApp'
 import 'nprogress/nprogress.css'
 
 import store from '~/store/'
@@ -39,7 +39,7 @@ export default function ajax (req) {
             : `[${resData.status_code}] ${resData.status_message}`
         )
         if (res.status === 401) {
-          resetApp() // session denied, etc
+          reloadApp() // session denied, etc
         }
       } else {
         notify(err.message)

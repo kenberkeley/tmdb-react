@@ -1,7 +1,9 @@
 // Doc: https://developers.themoviedb.org/3/authentication
 import ajax from '~/utils/ajax'
+import notify from '~/utils/notify'
 import LS from '~/utils/localStorage'
-import { REQUEST_TOKEN, SESSION_ID } from '~/constants/localStorageKeys'
+import { SESSION_ID } from '~/constants/localStorageKeys'
+import { QUERY__OAUTH_REQUEST_TOKEN, QUERY__OAUTH_IS_APPROVED } from '~/constants/routeFields'
 
 export default {
   state: {
@@ -14,46 +16,43 @@ export default {
     }
   },
   effects: {
-    ensureAuthed (payload, rootState) {
+    ensureAuthed (payload, rootState) { // call this func before mounting app
       if (rootState.auth.sessionId) { // authed
-        // TODO: how to check if session_id is valid?
+        // TODO: how to check if the session_id is valid?
         // https://www.themoviedb.org/talk/5ae4abc80e0a266b9e00aa4a
         return
       }
-      if (LS.get(REQUEST_TOKEN)) { // redirect from Doc: Step 2
-        return this._fetchNewSessionId()
+      const queries = new URLSearchParams(window.location.search)
+      if (queries.has(QUERY__OAUTH_REQUEST_TOKEN)) { // redirect from Doc: Step 2
+        if (queries.get(QUERY__OAUTH_IS_APPROVED) === 'true') {
+          return this._fetchNewSessionId(queries.get(QUERY__OAUTH_REQUEST_TOKEN))
+        } else {
+          const msg = 'You did not authorize the app to access your TMDb account'
+          notify(msg)
+          throw new Error(msg)
+        }
       }
       throw new Error('Please call authNow to continue')
     },
     authNow () {
+      LS.rm(SESSION_ID) // force to renew session_id
       return this._fetchNewReqToken()
     },
-    async _fetchNewReqToken () {
-      LS.rm(SESSION_ID) // forced renew session_id
-
-      // Doc: Step 1
+    async _fetchNewReqToken () { // Doc: Step 1
       const { request_token: reqToken } = await ajax({ url: '/authentication/token/new' })
-      LS.set(REQUEST_TOKEN, reqToken)
-
-      // Doc: Step 2
-      const location = window.location
-      const redirectUrl = location.href // TODO: dev - localhost, prod - Github Pages?
+      this.askForAuth(reqToken)
+    },
+    askForAuth (reqToken) { // Doc: Step 2
+      const { location } = window
+      const redirectUrl = location.href.split('?')[0] // TODO: dev - localhost, prod - Github Pages?
       location.assign(`https://www.themoviedb.org/authenticate/${reqToken}?redirect_to=${redirectUrl}`)
     },
-    async _fetchNewSessionId () {
-      const reqToken = LS.get(REQUEST_TOKEN)
-      if (!reqToken) {
-        this._fetchNewReqToken()
-        return
-      }
-
-      // Doc: Step 3
+    async _fetchNewSessionId (reqToken) { // Doc: Step 3
       const { session_id: sessionId } = await ajax({
         method: 'post',
         url: '/authentication/session/new',
         data: { request_token: reqToken }
       })
-      LS.rm(REQUEST_TOKEN) // must clear!
       this.updateSessionId(sessionId)
     }
   }
