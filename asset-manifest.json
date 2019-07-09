@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.js": "/themoviedb-demo/static/js/main.f8da1022.chunk.js",
+    "main.js.map": "/themoviedb-demo/static/js/main.f8da1022.chunk.js.map",
+    "runtime~main.js": "/themoviedb-demo/static/js/runtime~main.c0f89f78.js",
+    "runtime~main.js.map": "/themoviedb-demo/static/js/runtime~main.c0f89f78.js.map",
+    "static/css/2.e6157a56.chunk.css": "/themoviedb-demo/static/css/2.e6157a56.chunk.css",
+    "static/js/2.b0aac103.chunk.js": "/themoviedb-demo/static/js/2.b0aac103.chunk.js",
+    "static/js/2.b0aac103.chunk.js.map": "/themoviedb-demo/static/js/2.b0aac103.chunk.js.map",
+    "index.html": "/themoviedb-demo/index.html",
+    "precache-manifest.58680f18c491504cd0643d161f467d25.js": "/themoviedb-demo/precache-manifest.58680f18c491504cd0643d161f467d25.js",
+    "service-worker.js": "/themoviedb-demo/service-worker.js",
+    "static/css/2.e6157a56.chunk.css.map": "/themoviedb-demo/static/css/2.e6157a56.chunk.css.map"
+  }
+}
