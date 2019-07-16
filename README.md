@@ -79,3 +79,4 @@ Check out [Deployment (CRA Doc)](https://bit.ly/30rSgdV) for more information.
 ## § TODO
 
 * Testings (Unit & E2E)
+* Responsive layout
