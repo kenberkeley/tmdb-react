@@ -4,7 +4,7 @@
 
 ## § Online demo
 
-Click [here](https://kenberkeley.github.io/themoviedb-demo).
+Click [here](https://kenberkeley.github.io/tmdb-react).
 
 ## § Features
 
@@ -17,8 +17,8 @@ Click [here](https://kenberkeley.github.io/themoviedb-demo).
 ## $ Quick Start
 
 ```sh
-$ git clone https://github.com/kenberkeley/themoviedb-demo.git
-$ cd themoviedb-demo/
+$ git clone https://github.com/kenberkeley/tmdb-react.git
+$ cd tmdb-react/
 
 # Install dependencies
 $ npm i

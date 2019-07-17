@@ -1,8 +1,8 @@
 {
-  "name": "themoviedb-demo",
+  "name": "tmdb-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kenberkeley.github.io/themoviedb-demo",
+  "homepage": "https://kenberkeley.github.io/tmdb-react",
   "dependencies": {
     "@rematch/core": "^1.1.0",
     "axios": "^0.19.0",
