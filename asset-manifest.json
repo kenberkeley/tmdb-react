@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/themoviedb-demo/static/js/main.900bc110.chunk.js",
-    "main.js.map": "/themoviedb-demo/static/js/main.900bc110.chunk.js.map",
-    "runtime~main.js": "/themoviedb-demo/static/js/runtime~main.c0f89f78.js",
-    "runtime~main.js.map": "/themoviedb-demo/static/js/runtime~main.c0f89f78.js.map",
-    "static/css/2.e6157a56.chunk.css": "/themoviedb-demo/static/css/2.e6157a56.chunk.css",
-    "static/js/2.d1518e82.chunk.js": "/themoviedb-demo/static/js/2.d1518e82.chunk.js",
-    "static/js/2.d1518e82.chunk.js.map": "/themoviedb-demo/static/js/2.d1518e82.chunk.js.map",
-    "index.html": "/themoviedb-demo/index.html",
-    "precache-manifest.87133957654653d22bb3424e50e89f35.js": "/themoviedb-demo/precache-manifest.87133957654653d22bb3424e50e89f35.js",
-    "service-worker.js": "/themoviedb-demo/service-worker.js",
-    "static/css/2.e6157a56.chunk.css.map": "/themoviedb-demo/static/css/2.e6157a56.chunk.css.map"
+    "main.js": "/tmdb-react/static/js/main.3f3378de.chunk.js",
+    "main.js.map": "/tmdb-react/static/js/main.3f3378de.chunk.js.map",
+    "runtime~main.js": "/tmdb-react/static/js/runtime~main.c96e6377.js",
+    "runtime~main.js.map": "/tmdb-react/static/js/runtime~main.c96e6377.js.map",
+    "static/css/2.e6157a56.chunk.css": "/tmdb-react/static/css/2.e6157a56.chunk.css",
+    "static/js/2.d1518e82.chunk.js": "/tmdb-react/static/js/2.d1518e82.chunk.js",
+    "static/js/2.d1518e82.chunk.js.map": "/tmdb-react/static/js/2.d1518e82.chunk.js.map",
+    "index.html": "/tmdb-react/index.html",
+    "precache-manifest.679d275c702902d1be9e1f1c8cae7b87.js": "/tmdb-react/precache-manifest.679d275c702902d1be9e1f1c8cae7b87.js",
+    "service-worker.js": "/tmdb-react/service-worker.js",
+    "static/css/2.e6157a56.chunk.css.map": "/tmdb-react/static/css/2.e6157a56.chunk.css.map"
   }
 }
